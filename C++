@@ -1,0 +1,177 @@
+//Name: Oscar Cabrera
+// Data Structures
+#include <iostream>
+#include <iomanip>  // for formatted output
+#include <fstream>  // for file output
+#include <vector>   // for vectors
+using namespace std;
+
+int main() {
+    // declarations
+    srand(time(0));
+
+    // EXAMPLES - DECLARATIONS
+    cout << "EXAMPLES:\n";
+    const int SZ25 = 25;
+    const int W5 = 5;
+    const int W8 = 8;
+    const int COLS5 = 5;
+    const int COLS6 = 6;
+    int demo_arr[SZ25];
+
+    // EXAMPLE: generate array of multiples of 10
+    for (int i = 0; i < SZ25; i++)
+        demo_arr[i] = (i+1) * 10;
+    
+    // EXAMPLE: declaring an array of all 0's
+    int demo_arr2[SZ25] = {0};
+    
+    // EXAMPLE: declaring an array with specific values
+    const int SZ = 5;
+    int demo_arr3[SZ] = {14,68,412,64,86};
+    
+    // EXAMPLE: declaring an array beginning with specific values
+    // and filled in with 0's
+    const int SZ2 = 10;
+    int demo_arr4[SZ2] = {14,68,412,64,86};
+    // note how the array contains these values, followed by five 0's
+    cout << "10-element array with first 5 values specified:\n\t";
+    for (int val : demo_arr4) 
+        cout << val << " ";
+    
+    // EXAMPLE: output array using a for loop
+    cout << "\n\n\nArray output in columns with for loop:\n";
+    for (int i = 0; i < SZ25; i++) {
+        cout << setw(W5) << demo_arr[i];
+        cout << ((i+1) % COLS5 == 0 ? "\n" : "");
+    }
+    
+    // EXAMPLE: output array using a range-based for loop:
+    cout << "\n\nArray output (no columns) with range-based for loop:\n";
+    for (int val : demo_arr) 
+        cout << setw(W5) << val;
+    
+    // EXAMPLE: output array using a range-based for loop and an index:
+    cout << "\n\n\nArray output in columns with range-based for loop:\n";
+    int j = 1;
+    for (int val : demo_arr) {
+        cout << setw(W5) << val;
+        cout << (j++ % COLS5 == 0 ? "\n" : "");
+    }
+
+    // EXAMPLE: creating an 100-element array of random numbers 0-9999
+    const int SIZE2 = 100;
+    int rand_vals[SIZE2];
+    for (int i = 0; i < SIZE2; i++)
+        rand_vals[i] = rand() % 10000;
+
+    // EXAMPLE: reading external file data into an array
+    ifstream fin("data.txt");
+    int vals[10];
+    int i = 0;
+    while (fin >> vals[i++]);  // note that this while loop has no conditional clause
+                               // this is an example of very compact coding
+
+    // PART ONE: 
+    cout << "\n\nPART ONE: [16,34,71,12]";
+    // CREATE AND OUTPUT THIS INT ARRAY: 16 34 71 12
+    // separate elements with a space
+    //*** code here
+    const int SIZE = 4;
+    int demo_arr5[SIZE] = {16, 34, 71, 12};
+    for (int val : demo_arr5) 
+        cout << " " <<  val << " ";
+
+    
+    // PART TWO: 
+    cout << "\n\nPART TWO: [3,6,9,12,15,18]";
+    // CREATE AND OUTPUT THIS INT ARRAY USING A LOOP: 3 6 9 12 15 18
+    //*** code here
+    const int S = 6;
+    int demo_arr6[S] = {3, 6, 9, 12, 15, 18};
+     for (int i = 0; i < S; i++) {
+        cout << setw(W5) << demo_arr6[i];
+        cout << ((i+1) % COLS6 == 0 ? "\n" : "");
+    }
+
+    // PART THREE: 
+    cout << "\n\nPART THREE: 15 randoms (range 1-5): ";
+    // Create array: size 15, INT, randoms between 1-5 inclusive
+    //*** code here
+    const int SI = 15;
+    int rand_val[SI];
+    for (int i = 0; i < SI; i++){
+        rand_val[i] = rand() % 5 + 1;
+    }
+    for (int i = 0; i < SI; i++){
+        cout << rand_val[i] << " ";
+    }
+
+    // PART FOUR: 
+    cout << "\n\nPART FOUR: 21 random EVEN numbers (any range):";
+    // Create: size = 21, INT, randoms between 1-5 inclusive
+    // Output: separate by spaces
+    //*** code here
+    const int SIZE21 = 21;
+    int rand_va[SI];
+    for (int i = 0; i < SIZE21; i++){
+        rand_va[i] = rand() % 5 + 1;
+    }
+    for (int i = 0; i < SIZE21; i++){
+        cout << 2 * rand_va[i] << " ";
+    }
+
+    // PART FIVE: 
+    cout << "\n\nPART FIVE: Same array, output in 7 columns:\n";
+    // Use the array you created in Part 4.
+    // Output: in formatted columns, 7 columns, width of 8
+    //*** code here
+    const int COL7 = 7;
+    const int SI21 = 21;
+    int rand_v[SI];
+    for (int i = 0; i < SI21; i++){
+        rand_v[i] = rand() % 5 + 1;
+    }
+    for (int i = 0; i < SI21; i++){
+        cout << setw(W8) << 2 * rand_v[i];
+        cout << ((i+1) % COL7 == 0 ? "\n" : "");
+    }
+
+    // EXAMPLE: 2-D ARRAY
+    // 13   62   55
+    // 34   19    6
+    cout << "\n\nEXAMPLE: 2D ARRAYS\n";
+    const int ROWS = 2, COLS = 3;
+    int arr5[2][3] = { {13,62,55},
+                       {34,19, 6} };
+
+    // we use nested for loops to output a 2D array.
+    // the outer for loop iterates through the rows.
+    // the inner for loop iterates through the columns.
+    for (int i = 0; i < ROWS; i++) {
+        for (int j = 0; j < COLS; j++)
+            cout << setw(W5) << arr5[i][j];
+        cout << endl;
+    }
+
+    // PART SIX: 2-D ARRAY
+    // Create and output this 2D array:
+    //  45.56   78.15   64.22   132.54
+    // 225.52  196.64  221.51   442.20
+    // 165.88  332.30  411.98   615.21
+    // 120.00  152.1    15.94    94.88
+    cout << "\n\nPart SIX: 2D ARRAYS\n";
+    const int ROW = 4, COL = 4;
+    double arr6[4][4] = { {45.56, 78.15, 64.22, 132.54},
+                       {225.52, 196.64, 221.51, 442.20},
+                       {165.88, 332.30, 411.98, 615.21},
+                       {120.00, 152.1, 15.94, 94.88} };
+
+     for (int i = 0; i < ROW; i++) {
+        for (int j = 0; j < COL; j++)
+            cout << setw(W8) << arr6[i][j];
+        cout << endl;
+    }
+    
+    return 0;
+}
